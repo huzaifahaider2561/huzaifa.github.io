@@ -8,7 +8,7 @@ body {
 header {
     text-align: center;
     padding: 20px;
-    background-color: #333;
+    background-color: #3f004d;
     color: white;
 }
 
@@ -18,7 +18,7 @@ header img {
 }
 
 nav {
-    background-color: #444;
+    background-color: #76045f;
     padding: 10px;
 }
 
@@ -44,7 +44,7 @@ main {
 }
 
 main h2 {
-    color: #333;
+    color: #2d0124;
 }
 
 main p {
@@ -57,11 +57,11 @@ main mark {
 }
 
 time {
-    color: #777;
+    color: #000000;
 }
 
 canvas {
-    border: 2px solid #00def3;
+    border: 2px solid #035057;
 }
 
 audio, video {
@@ -73,7 +73,7 @@ form {
 }
 
 footer {
-    background-color: #333;
+    background-color: #76045f;
     color: white;
     text-align: center;
     padding: 10px;
