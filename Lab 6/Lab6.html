@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">My Portfolio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Picture and About Me Section -->
+  <div class="container mt-5">
+    <div class="text-center">
+      <img src="prof.jpg" alt="Profile Picture" class="profile-picture">
+      <h1>Muhammad Huzaifa Bin Haider</h1>
+      <p>Email: huzaifahaider2561@gmail.com</p>
+      <p>Phone: +923346267740</p>
+      <p>I am a versatile individual proficient in UI/UX design, WordPress development, and graphic design. With expertise in Adobe Illustrator, Photoshop, XD, Canva, Figma, and WordPress, I bring diverse skills to the table. As a UI/UX designer, WordPress developer, and logo creator, I am committed to delivering visually stunning designs, efficient websites, and captivating brand identities. With a firm grasp of multiple disciplines, I am equipped to provide comprehensive creative solutions.</p>
+    </div>
+  </div>
+
+  <!-- Skills Section -->
+  <div id="skills" class="container mt-5">
+    <h2 class="section-heading">Skills</h2>
+    <div class="row">
+      <!-- Use Bootstrap's grid system to display skills -->
+      <div class="col-md-4">
+        <h3>Wordpress Developer</h3>
+        <p>Extensive expertise in WordPress development, delivering visually appealing and highly functional websites. Proficient in customizing themes, integrating plugins, and optimizing performance. Committed to creating responsive and SEO-friendly websites that exceed client expectations.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>UI/UX Designing</h3>
+        <p>Deep expertise in creating captivating and user-centered UI/UX designs. Utilizing user research, wireframing, and prototyping to deliver seamless user experiences. A strong focus on aesthetics, usability, and achieving business objectives.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Digital Marketing</h3>
+        <p>Proficient in digital marketing, I specialize in lead generation and cold direct message outreach on Instagram. With a knack for crafting responsive messages and executing timely follow-ups, I ensure seamless communication and effective customer engagement.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects Section -->
+  <div id="projects" class="container mt-5">
+    <h2 class="section-heading">Projects</h2>
+    <div class="row">
+      <!-- Use Bootstrap's card component to display projects -->
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="proj1.png" class="card-img-top" alt="Project 1">
+          <div class="card-body">
+            <h5 class="card-title">Hand Gesture Controlled Robotic Arm</h5>
+            <p class="card-text">The robotic arm position is
+              controlled through a hand glove that is attached to
+              an MPU6050 Gyroscope and a flex sensor.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="proj2.png" class="card-img-top" alt="Project 2">
+          <div class="card-body">
+            <h5 class="card-title">Phone Book Directory in C++ and .NetFramework</h5>
+            <p class="card-text">Learned Techniques of Data Structure in C++ and Dot NetFramework for frontend application</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="proj3.png" class="card-img-top" alt="Project 3">
+          <div class="card-body">
+            <h5 class="card-title">3D Image Reconstruction from Multiple 2D Images</h5>
+            <p class="card-text">Learned Techniques of Digital Image Processing which includes Image enhancement, Image reconstruction </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div id="contact" class="container mt-5">
+    <h2 class="section-heading">Contact</h2>
+    <!-- Add a Bootstrap form for contact -->
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea class="form-control" id="message" rows="3" placeholder="Enter your message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto py-3">
+    <div class="container text-center">
+      <span class="text-muted">© 2024 Muhammad Huzaifa Bin Haider</span>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body
+

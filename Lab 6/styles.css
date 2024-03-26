@@ -1,0 +1,47 @@
+/* Custom CSS for body */
+body {
+  background-color: #f8f9fa; /* Light grey background */
+}
+
+/* Custom CSS for navbar */
+.navbar {
+  background-color: #343a40 !important; /* Dark blue navbar */
+}
+
+/* Custom CSS for footer */
+.footer {
+  background-color: #343a40; /* Dark blue footer */
+  color: white; /* Text color for footer */
+}
+
+/* Custom CSS for section headings */
+.section-heading {
+  border-bottom: 2px solid #343a40;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+/* Custom CSS for card images */
+.card-img-top {
+  height: 200px; /* Set a fixed height for card images */
+  object-fit: cover; /* Ensure the image covers the entire space */
+}
+
+/* Custom CSS for profile picture */
+.profile-picture {
+  border-radius: 50%; /* Make the image circular */
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Custom CSS for circular profile picture */
+.profile-picture {
+  border-radius: 50%; /* Make the image circular */
+}
+
+/* Custom CSS for header color */
+.container-header {
+  background-color: #343a40; /* Dark blue header */
+  color: white; /* Text color for header */
+}
