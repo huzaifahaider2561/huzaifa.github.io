@@ -30,18 +30,14 @@ body {
 /* Custom CSS for profile picture */
 .profile-picture {
   border-radius: 50%; /* Make the image circular */
-  max-width: 200px;
-  height: auto;
-  margin-bottom: 20px;
+  width: 200px; /* Set width */
+  height: 200px; /* Set height */
+  object-fit: cover; /* Ensure the image covers the entire space */
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 /* Custom CSS for circular profile picture */
 .profile-picture {
   border-radius: 50%; /* Make the image circular */
-}
-
-/* Custom CSS for header color */
-.container-header {
-  background-color: #343a40; /* Dark blue header */
-  color: white; /* Text color for header */
 }

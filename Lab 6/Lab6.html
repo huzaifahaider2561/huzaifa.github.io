@@ -9,17 +9,20 @@
   <!-- Custom CSS -->
   <link href="styles.css" rel="stylesheet">
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
   
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">My Portfolio</a>
+      <a class="navbar-brand" href="#home">My Portfolio</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#skills">Skills</a>
           </li>
@@ -35,13 +38,23 @@
   </nav>
 
   <!-- Profile Picture and About Me Section -->
-  <div class="container mt-5">
+  <div id="home" class="container mt-5">
     <div class="text-center">
       <img src="prof.jpg" alt="Profile Picture" class="profile-picture">
       <h1>Muhammad Huzaifa Bin Haider</h1>
       <p>Email: huzaifahaider2561@gmail.com</p>
       <p>Phone: +923346267740</p>
       <p>I am a versatile individual proficient in UI/UX design, WordPress development, and graphic design. With expertise in Adobe Illustrator, Photoshop, XD, Canva, Figma, and WordPress, I bring diverse skills to the table. As a UI/UX designer, WordPress developer, and logo creator, I am committed to delivering visually stunning designs, efficient websites, and captivating brand identities. With a firm grasp of multiple disciplines, I am equipped to provide comprehensive creative solutions.</p>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div id="about" class="container mt-5">
+    <h2 class="section-heading">About</h2>
+    <div class="row">
+      <div class="col-md-12">
+        <p>I am a multifaceted professional with expertise in UI/UX design, WordPress development, and digital marketing. My skills in Adobe Suite and WordPress enable me to create visually stunning designs and efficient websites. With a focus on user-centricity and innovation, I aim to deliver compelling solutions that exceed expectations.</p>
+      </div>
     </div>
   </div>
 
@@ -75,9 +88,7 @@
           <img src="proj1.png" class="card-img-top" alt="Project 1">
           <div class="card-body">
             <h5 class="card-title">Hand Gesture Controlled Robotic Arm</h5>
-            <p class="card-text">The robotic arm position is
-              controlled through a hand glove that is attached to
-              an MPU6050 Gyroscope and a flex sensor.</p>
+            <p class="card-text">The robotic arm position is controlled through a hand glove that is attached to an MPU6050 Gyroscope and a flex sensor.</p>
           </div>
         </div>
       </div>
@@ -95,7 +106,7 @@
           <img src="proj3.png" class="card-img-top" alt="Project 3">
           <div class="card-body">
             <h5 class="card-title">3D Image Reconstruction from Multiple 2D Images</h5>
-            <p class="card-text">Learned Techniques of Digital Image Processing which includes Image enhancement, Image reconstruction </p>
+            <p class="card-text">Learned Techniques of Digital Image Processing which includes Image enhancement, Image reconstruction</p>
           </div>
         </div>
       </div>
@@ -134,5 +145,5 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body
-
+</body>
+</html>
