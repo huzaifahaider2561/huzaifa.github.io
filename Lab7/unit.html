@@ -34,34 +34,36 @@
             color: #333;
             position: absolute;
             top: -140px; /* Adjust the top position as needed */
-            right: -60px; /* Adjust the right position as needed */
+            right: -55px; /* Adjust the right position as needed */
         }
 
         .options-menu {
             display: none;
             position: absolute;
-            top: -200px;
-            right: -60;
+            top: -120px;
+            right: -150px;
             background-color: #fff;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 10px;
             z-index: 1;
+            
         }
 
-        .options-menu button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            font-size: 16px;
+        .options-menu a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #e0e0e0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
             color: #333;
-            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
         }
 
-        .options-menu button:hover {
-            background-color: #f0f0f0;
+        .options-menu a:hover {
+            background-color: #ccc;
         }
 
         .navigator-btn:focus + .options-menu {
@@ -119,10 +121,10 @@
         <div class="navigator">
             <button class="navigator-btn" onclick="toggleOptionsMenu()">...</button>
             <div class="options-menu" id="options-menu">
-                <button onclick="window.location.href = 'simple.html'">Simple Mode</button>
-                <button onclick="window.location.href = 'scientific.html'">Scientific Mode</button>
-                <button onclick="window.location.href = 'unit.html'">Unit Conversion</button>
-                <button onclick="window.location.href = 'currency.html'">Currency Exchange</button>
+                <a href="simple.html">Simple Mode</a><br>
+                <a href="scientific.html">Scientific Mode</a><br>
+                <a href="unit.html">Unit Conversion</a><br>
+                <a href="currency.html">Currency Exchange</a>
             </div>
         </div>
         <div class="calculator">

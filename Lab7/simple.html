@@ -46,20 +46,21 @@
             z-index: 1;
         }
 
-        .options-menu button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            font-size: 16px;
+        .options-menu a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #e0e0e0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
             color: #333;
-            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
         }
 
-        .options-menu button:hover {
-            background-color: #f0f0f0;
+        .options-menu a:hover {
+            background-color: #ccc;
         }
 
         .navigator-btn:focus + .options-menu {
@@ -112,10 +113,10 @@
         <div class="navigator">
             <button class="navigator-btn" onclick="toggleOptionsMenu()">...</button>
             <div class="options-menu" id="options-menu">
-                <button onclick="window.location.href = 'simple.html'">Simple Mode</button>
-                <button onclick="window.location.href = 'scientific.html'">Scientific Mode</button>
-                <button onclick="window.location.href = 'unit.html'">Unit Conversion</button>
-                <button onclick="window.location.href = 'currency.html'">Currency Exchange</button>
+                <a href="simple.html">Simple Mode</a><br>
+                <a href="scientific.html">Scientific Mode</a><br>
+                <a href="unit.html">Unit Conversion</a><br>
+                <a href="currency.html">Currency Exchange</a>
             </div>
         </div>
         <div class="calculator">
@@ -151,7 +152,7 @@
         // JavaScript functions
         function toggleOptionsMenu() {
             const optionsMenu = document.getElementById('options-menu');
-            optionsMenu.style.display = optionsMenu.style.display === 'none' ? 'block' : 'none'; // Change this
+            optionsMenu.style.display = optionsMenu.style.display === 'block' ? 'none' : 'block';
         }
 
         function toggleCalculatorMode(mode) {
