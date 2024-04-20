@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Calculator</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Center the container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Navigator styles */
+        .navigator {
+            position: relative;
+            margin-bottom: 20px; /* Add margin bottom to create space between navigator and calculator */
+        }
+
+        .navigator-btn {
+            background-color: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333;
+            position: absolute;
+            top: -140px; /* Adjust the top position as needed */
+            right: -60px; /* Adjust the right position as needed */
+        }
+
+        .options-menu {
+            display: none;
+            position: absolute;
+            top: -200px;
+            right: -60;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+        .options-menu button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+        }
+
+        .options-menu button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .navigator-btn:focus + .options-menu {
+            display: block;
+        }
+
+        /* Calculator styles */
+        .calculator {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: right;
+        }
+
+        .display {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 2em;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        button {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.5em;
+            padding: 15px;
+        }
+        button:hover {
+            background-color: #ccc;
+        }
+
+     
+        /* Convert button */
+        #unitConversionButton {
+            width: 100%;
+            margin-top: 10px;
+        }
+        #from{
+            padding-left: 0%;
+        }
+        #Amount{
+            padding-left: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigator">
+            <button class="navigator-btn" onclick="toggleOptionsMenu()">...</button>
+            <div class="options-menu" id="options-menu">
+                <button onclick="toggleCalculatorMode('simple-mode')">Simple Mode</button>
+                <button onclick="toggleCalculatorMode('scientific-mode')">Scientific Mode</button>
+                <button onclick="toggleCalculatorMode('unit-conversion-mode')">Unit Conversion</button>
+                <button onclick="toggleCalculatorMode('currency-exchange-mode')">Currency Exchange</button>
+            </div>
+        </div>
+        <div class="calculator">
+            <!-- Currency Exchange Calculator Mode -->
+            <div id="currency-exchange-mode" class="calculator-mode" style="display: block;">
+                <div class="display" id="display">0</div>
+                <div class="buttons">
+                    <label id="Amount" for="amount">Amount:</label><br>
+                    <input type="number" id="amount" name="amount" placeholder="Enter amount">
+                    <br>
+                    <label id="from" for="fromCurrency">From Currency:</label><br>
+                    <select id="fromCurrency" name="fromCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="PKR">PKR</option>
+                        <option value="AED">AED</option>
+                        <option value="GBP">GBP</option>
+                    </select>
+                    <br>
+                    <label for="toCurrency">To Currency:</label><br>
+                    <select id="toCurrency" name="toCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="PKR">PKR</option>
+                        <option value="AED">AED</option>
+                        <option value="GBP">GBP</option>
+                    </select>
+                    <br>
+                    <button id="currencyExchangeButton" onclick="performCurrencyExchange()">Exchange</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function performCurrencyExchange() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const fromCurrency = document.getElementById('fromCurrency').value;
+            const toCurrency = document.getElementById('toCurrency').value;
+
+            // Conversion rates (hypothetical)
+            const conversionRates = {
+                'USD': {'EUR': 0.85, 'PKR': 175, 'AED': 3.67, 'GBP': 0.72},
+                'EUR': {'USD': 1.18, 'PKR': 206, 'AED': 4.11, 'GBP': 0.81},
+                'PKR': {'USD': 0.0057, 'EUR': 0.0049, 'AED': 0.021, 'GBP': 0.0044},
+                'AED': {'USD': 0.27, 'EUR': 0.24, 'PKR': 47.45, 'GBP': 0.20},
+                'GBP': {'USD': 1.39, 'EUR': 1.24, 'PKR': 227, 'AED': 4.98}
+            };
+
+            let result;
+            if (fromCurrency in conversionRates && toCurrency in conversionRates[fromCurrency]) {
+                result = amount * conversionRates[fromCurrency][toCurrency];
+            } else {
+                result = 'Invalid currency pair';
+            }
+
+            document.getElementById('display').innerText = result.toFixed(2);
+        }
+
+        function toggleCalculator(mode) {
+            document.querySelectorAll('.calculator').forEach(calculator => {
+                if (calculator.id === mode) {
+                    calculator.style.display = 'block';
+                } else {
+                    calculator.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Center the container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Navigator styles */
+        .navigator {
+            position: relative;
+            margin-bottom: 20px; /* Add margin bottom to create space between navigator and calculator */
+        }
+
+        .navigator-btn {
+            background-color: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333;
+            position: absolute;
+            top: -140px; /* Adjust the top position as needed */
+            right: -60px; /* Adjust the right position as needed */
+        }
+
+        .options-menu {
+            display: none;
+            position: absolute;
+            top: -200px;
+            right: -60;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+        .options-menu button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+        }
+
+        .options-menu button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .navigator-btn:focus + .options-menu {
+            display: block;
+        }
+
+        /* Calculator styles */
+        .calculator {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: right;
+        }
+
+        .display {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 2em;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        button {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.5em;
+            padding: 15px;
+        }
+        button:hover {
+            background-color: #ccc;
+        }
+
+     
+        /* Convert button */
+        #unitConversionButton {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigator">
+            <button class="navigator-btn" onclick="toggleOptionsMenu()">...</button>
+            <div class="options-menu" id="options-menu">
+                <button onclick="toggleCalculatorMode('simple-mode')">Simple Mode</button>
+                <button onclick="toggleCalculatorMode('scientific-mode')">Scientific Mode</button>
+                <button onclick="toggleCalculatorMode('unit-conversion-mode')">Unit Conversion</button>
+                <button onclick="toggleCalculatorMode('currency-exchange-mode')">Currency Exchange</button>
+            </div>
+        </div>
+        <div class="calculator">
+            <!-- Unit Conversion Calculator Mode -->
+            <div id="unit-conversion-mode" class="calculator-mode">
+                <div class="display" id="display">0</div>
+                <div class="buttons">
+                    <label for="value">Value:</label><br>
+                    <input type="number" id="value" name="value" placeholder="Enter value">
+                    <br>
+                    <label for="fromUnit">From:</label><br>
+                    <select id="fromUnit" name="fromUnit">
+                        <option value="mm">Millimeter</option>
+                        <option value="cm">Centimeter</option>
+                        <option value="m">Meter</option>
+                        <option value="km">Kilometer</option>
+                        <option value="mg">Milligram</option>
+                        <option value="g">Gram</option>
+                        <option value="kg">Kilogram</option>
+                        <option value="C">Celsius</option>
+                        <option value="K">Kelvin</option>
+                    </select>
+                    <br>
+                    <label for="toUnit">To:</label><br>
+                    <select id="toUnit" name="toUnit">
+                        <option value="mm">Millimeter</option>
+                        <option value="cm">Centimeter</option>
+                        <option value="m">Meter</option>
+                        <option value="km">Kilometer</option>
+                        <option value="mg">Milligram</option>
+                        <option value="g">Gram</option>
+                        <option value="kg">Kilogram</option>
+                        <option value="C">Celsius</option>
+                        <option value="K">Kelvin</option>
+                    </select>
+                    <br>
+                    <button id="unitConversionButton" onclick="performUnitConversion()">Convert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleOptionsMenu() {
+            const optionsMenu = document.getElementById('options-menu');
+            optionsMenu.style.display = optionsMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleCalculatorMode(mode) {
+            const calculatorModes = document.querySelectorAll('.calculator-mode');
+            calculatorModes.forEach(calculatorMode => {
+                if (calculatorMode.id === mode) {
+                    calculatorMode.style.display = 'block';
+                } else {
+                    calculatorMode.style.display = 'none';
+                }
+            });
+        }
+
+        function performUnitConversion() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+
+            let result;
+            switch (fromUnit) {
+                case 'mm':
+                    result = convertFromMM(value, toUnit);
+                    break;
+                case 'cm':
+                    result = convertFromCM(value, toUnit);
+                    break;
+                case 'km':
+                    result = convertFromKM(value, toUnit);
+                    break;
+                case 'm':
+                    result = convertFromM(value, toUnit);
+                    break;
+                case 'g':
+                    result = convertFromG(value, toUnit);
+                    break;
+                case 'kg':
+                    result = convertFromKG(value, toUnit);
+                    break;
+                case 'mg':
+                    result = convertFromMG(value, toUnit);
+                    break;
+                case 'c':
+                    result = convertFromC(value, toUnit);
+                    break;
+                case 'k':
+                    result = convertFromK(value, toUnit);
+                    break;
+                // Add cases for other units
+                default:
+                    result = 'Invalid from unit';
+            }
+
+            document.getElementById('display').innerText = result;
+        }
+
+        function convertFromMM(value, toUnit) {
+            switch (toUnit) {
+                case 'mm':
+                    return value;
+                case 'cm':
+                    return value / 10;
+                case 'm':
+                    return value / 1000;
+                case 'km':
+                    return value / 1000000;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+
+        function convertFromCM(value, toUnit) {
+            switch (toUnit) {
+                case 'mm':
+                    return value * 10;
+                case 'cm':
+                    return value;
+                case 'm':
+                    return value / 100;
+                case 'km':
+                    return value / 100000;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+        function convertFromM(value, toUnit) {
+            switch (toUnit) {
+                case 'mm':
+                    return value * 1000;
+                case 'cm':
+                    return value * 100;
+                case 'm':
+                    return value;
+                case 'km':
+                    return value / 1000;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+        function convertFromKM(value, toUnit) {
+            switch (toUnit) {
+                case 'mm':
+                    return value * 1000000;
+                case 'cm':
+                    return value * 100000;
+                case 'm':
+                    return value * 1000;
+                case 'km':
+                    return value;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+        function convertFromKG(value, toUnit) {
+            switch (toUnit) {
+                case 'kg':
+                    return value;
+                case 'mg':
+                    return value * 1000000;
+                case 'g':
+                    return value * 1000;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+        function convertFromG(value, toUnit) {
+            switch (toUnit) {
+                case 'kg':
+                    return value /1000;
+                case 'mg':
+                    return value * 1000;
+                case 'g':
+                    return value;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+        function convertFromMG(value, toUnit) {
+            switch (toUnit) {
+                case 'kg':
+                    return value/1000000;
+                case 'mg':
+                    return value;
+                case 'g':
+                    return value / 1000;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+        function convertFromC(value, toUnit) {
+            switch (toUnit) {
+                case 'c':
+                    return value;
+                case 'k':
+                    return value + 273;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+
+        function convertFromK(value, toUnit) {
+            switch (toUnit) {
+                case 'k':
+                    return value;
+                case 'c':
+                    return value-273;
+                // Add cases for other units
+                default:
+                    return 'Invalid to unit';
+            }
+        }
+        function toggleCalculator(mode) {
+            document.querySelectorAll('.calculator').forEach(calculator => {
+                if (calculator.id === mode) {
+                    calculator.style.display = 'block';
+                } else {
+                    calculator.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

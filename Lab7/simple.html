@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        /* CSS styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .navigator {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .navigator-btn {
+            background-color: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333;
+            position: absolute;
+            top: -220px;
+            right: -60px;
+        }
+
+        .options-menu {
+            display: none;
+            position: absolute;
+            top: -200px;
+            right: -60;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+        .options-menu button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+        }
+
+        .options-menu button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .navigator-btn:focus + .options-menu {
+            display: block;
+        }
+
+        .calculator {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: right;
+        }
+
+        .display {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 2em;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        button {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.5em;
+            padding: 15px;
+        }
+        #zero {
+            grid-column: span 2;
+        }
+        button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigator">
+            <button class="navigator-btn" onclick="toggleOptionsMenu()">...</button>
+            <div class="options-menu" id="options-menu">
+                <button onclick="toggleCalculatorMode('simple-mode')">Simple Mode</button>
+                <button onclick="toggleCalculatorMode('scientific-mode')">Scientific Mode</button>
+                <button onclick="toggleCalculatorMode('unit-conversion-mode')">Unit Conversion</button>
+                <button onclick="toggleCalculatorMode('currency-exchange-mode')">Currency Exchange</button>
+            </div>
+        </div>
+        <div class="calculator">
+            <!-- Simple Calculator Mode -->
+            <div id="simple-mode" class="calculator-mode">
+                <div class="display" id="display">0</div>
+                <div class="buttons">
+                    <button onclick="clearDisplay()">C</button>
+                    <button onclick="backspace()">⌫</button>
+                    <button onclick="appendToDisplay('%')">%</button>
+                    <button onclick="appendToDisplay('/')">÷</button>
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('*')">x</button>
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('+')">+</button>
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+                    <button id="zero" onclick="appendToDisplay('0')">0</button>
+                    <button onclick="appendToDisplay('.')">.</button>
+                    <button onclick="calculate()">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript functions
+        function toggleOptionsMenu() {
+            const optionsMenu = document.getElementById('options-menu');
+            optionsMenu.style.display = optionsMenu.style.display === 'none' ? 'block' : 'none'; // Change this
+        }
+
+        function toggleCalculatorMode(mode) {
+            const calculatorModes = document.querySelectorAll('.calculator-mode');
+            calculatorModes.forEach(calculatorMode => {
+                if (calculatorMode.id === mode) {
+                    calculatorMode.style.display = 'block';
+                } else {
+                    calculatorMode.style.display = 'none';
+                }
+            });
+        }
+
+        // Calculator functions
+        let currentDisplay = '0';
+
+        function clearDisplay() {
+            currentDisplay = '0';
+            updateDisplay();
+        }
+
+        function backspace() {
+            currentDisplay = currentDisplay.slice(0, -1);
+            if (currentDisplay === '') {
+                currentDisplay = '0';
+            }
+            updateDisplay();
+        }
+
+        function appendToDisplay(value) {
+            if (currentDisplay === '0') {
+                currentDisplay = value;
+            } else {
+                currentDisplay += value;
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('display').innerText = currentDisplay;
+        }
+
+        function calculate() {
+            try {
+                currentDisplay = eval(currentDisplay).toString();
+                updateDisplay();
+            } catch (error) {
+                currentDisplay = 'Error';
+                updateDisplay();
+            }
+        }
+        function toggleCalculator(mode) {
+            document.querySelectorAll('.calculator').forEach(calculator => {
+                if (calculator.id === mode) {
+                    calculator.style.display = 'block';
+                } else {
+                    calculator.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
